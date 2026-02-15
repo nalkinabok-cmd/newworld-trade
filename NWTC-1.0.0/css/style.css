@@ -1,0 +1,443 @@
+/*******************************************************
+  NWT SINGLE THEME (Blue & White + Red Accent)
+  - Base: Blue/White
+  - Accent: Red only for hover/active/underline
+  - No black. No navy text.
+  - Fix mint leak: FORCE .text-primary / --primary
+*******************************************************/
+
+:root{
+  /* Brand */
+  --primary: #1D4ED8;               /* Main Blue */
+  --primary-rgb: 29, 78, 216;
+  --accent: #EF4444;                /* Red Accent */
+  --accent-rgb: 239, 68, 68;
+
+  /* Surfaces */
+  --surface: #FFFFFF;
+  --surface-2: #F3F7FF;
+  --light: #F6F9FF;
+
+  /* Text (blue family only) */
+  --text: rgba(29,78,216,.90);
+  --text-strong: rgba(29,78,216,1);
+  --muted: rgba(29,78,216,.70);
+
+  /* Borders / Radius / Shadow */
+  --border: rgba(29,78,216,.16);
+  --radius: 18px;
+  --shadow-sm: 0 8px 18px rgba(29,78,216,.12);
+  --shadow-md: 0 14px 32px rgba(29,78,216,.18);
+
+  /* Deep blue bg (still blue, not black) */
+  --deep-bg: #0B3A8A;
+  --deep-bg-2: #0A2F72;
+
+  /* Bootstrap vars */
+  --bs-primary: var(--primary);
+  --bs-primary-rgb: var(--primary-rgb);
+  --bs-secondary: var(--accent);
+  --bs-secondary-rgb: var(--accent-rgb);
+  --bs-body-bg: var(--surface);
+  --bs-body-color: var(--text);
+  --bs-link-color: var(--primary);
+  --bs-link-hover-color: var(--accent);
+}
+
+/* =============================
+   Base / Typography
+============================= */
+html, body{ height:100%; }
+body{
+  font-family: 'Roboto', sans-serif;
+  background: var(--surface);
+  color: var(--text);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+h1,h2,h3,h4,h5,h6{
+  font-family: 'Roboto Condensed', sans-serif;
+  color: var(--text-strong);
+  letter-spacing: .2px;
+}
+p, li, small{ color: var(--text); }
+
+a{
+  transition: color .2s ease, background-color .2s ease, border-color .2s ease,
+              transform .2s ease, box-shadow .2s ease;
+}
+
+/* =============================
+   HARD OVERRIDE (Mint killer)
+   - 템플릿 기본(#13C5DD) 잔재가 있어도 이게 최종 승리
+============================= */
+.text-primary{ color: var(--primary) !important; }
+.border-primary{ border-color: var(--primary) !important; }
+.bg-primary{ background-color: var(--primary) !important; }
+
+.text-dark{ color: var(--text-strong) !important; }
+.text-body{ color: var(--text) !important; }
+.text-muted{ color: var(--muted) !important; }
+
+.bg-light{ background-color: var(--light) !important; }
+.bg-white{ background-color: var(--surface) !important; }
+
+hr, .border, .border-top, .border-bottom{
+  border-color: var(--border) !important;
+}
+
+/* ✅ 이게 너가 말한 “About Us” 라인 민트/밑줄색 흔들림 방지 핵심 */
+h5.text-primary.border-bottom{
+  border-bottom-color: currentColor !important;  /* 글자색=파란색이면 밑줄도 파란색 */
+}
+
+/* Display titles sometimes inherit dark -> force blue (except white text) */
+.display-1:not(.text-white),
+.display-2:not(.text-white),
+.display-3:not(.text-white),
+.display-4:not(.text-white),
+.display-5:not(.text-white),
+.display-6:not(.text-white){
+  color: var(--text-strong) !important;
+}
+
+/* =============================
+   Blue sections readability
+============================= */
+.bg-primary .text-primary{ color: rgba(255,255,255,.92) !important; }
+.bg-primary .text-white{ color:#fff !important; }
+.bg-primary .border-bottom{ border-color: rgba(255,255,255,.28) !important; }
+
+/* =============================
+   Buttons (Unified)
+============================= */
+.btn{
+  font-weight: 700;
+  border-radius: 999px;
+  transition: background-color .2s ease, border-color .2s ease, color .2s ease,
+              transform .2s ease, box-shadow .2s ease;
+}
+.btn:hover{
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-sm);
+}
+.btn:focus,
+.btn:focus-visible{
+  outline:none;
+  box-shadow: 0 0 0 .22rem rgba(var(--accent-rgb), .18);
+}
+
+/* Primary: Blue -> Hover Red */
+.btn-primary,
+a.btn-primary{
+  background-color: var(--primary) !important;
+  border-color: var(--primary) !important;
+  color:#fff !important;
+}
+.btn-primary:hover,
+a.btn-primary:hover{
+  background-color: var(--accent) !important;
+  border-color: var(--accent) !important;
+}
+
+/* Outline Primary: outline blue -> hover fill blue */
+.btn-outline-primary,
+a.btn-outline-primary{
+  color: var(--primary) !important;
+  border-color: var(--primary) !important;
+  background: transparent !important;
+}
+.btn-outline-primary:hover,
+a.btn-outline-primary:hover{
+  background-color: var(--primary) !important;
+  border-color: var(--primary) !important;
+  color:#fff !important;
+}
+
+/* Outline Light (Hero): white outline -> hover red */
+.btn-outline-light,
+a.btn-outline-light{
+  border-color: rgba(255,255,255,.70) !important;
+  color:#fff !important;
+  background: transparent !important;
+}
+.btn-outline-light:hover,
+a.btn-outline-light:hover{
+  background: var(--accent) !important;
+  border-color: var(--accent) !important;
+}
+
+/* Light button: white -> hover blue */
+.btn-light,
+a.btn-light{
+  background: rgba(255,255,255,.95) !important;
+  border-color: rgba(255,255,255,.95) !important;
+  color: var(--primary) !important;
+}
+.btn-light:hover,
+a.btn-light:hover{
+  background: var(--primary) !important;
+  border-color: var(--primary) !important;
+  color:#fff !important;
+}
+
+/* Dark remnants -> map to Blue */
+.btn-dark, a.btn-dark{
+  background: var(--primary) !important;
+  border-color: var(--primary) !important;
+  color:#fff !important;
+}
+.btn-dark:hover, a.btn-dark:hover{
+  background: var(--accent) !important;
+  border-color: var(--accent) !important;
+}
+.btn-outline-dark, a.btn-outline-dark{
+  color: var(--primary) !important;
+  border-color: var(--primary) !important;
+  background: transparent !important;
+}
+.btn-outline-dark:hover, a.btn-outline-dark:hover{
+  background: var(--primary) !important;
+  border-color: var(--primary) !important;
+  color:#fff !important;
+}
+
+/* Square sizes (template compatibility) */
+.btn-square{ width:36px; height:36px; border-radius: 12px; }
+.btn-sm-square{ width:28px; height:28px; border-radius: 10px; }
+.btn-lg-square{ width:46px; height:46px; border-radius: 14px; }
+.btn-square,.btn-sm-square,.btn-lg-square{ padding-left:0; padding-right:0; text-align:center; }
+
+/* Back to top */
+.back-to-top{
+  position: fixed;
+  display: none;
+  right: 22px;
+  bottom: 18px;
+  border-radius: 999px;
+  z-index: 99;
+  box-shadow: var(--shadow-md);
+}
+
+/* =============================
+   Topbar
+============================= */
+.container-fluid.py-2 a.text-body{
+  color: var(--text) !important;
+}
+.container-fluid.py-2 a.text-body:hover{
+  color: var(--accent) !important;
+}
+
+/* =============================
+   Navbar (Underline ONLY on hover)
+============================= */
+/* Kill any old pseudo underline */
+.navbar-light .navbar-nav .nav-link::before,
+.navbar-light .navbar-nav .nav-link::after{
+  content:none !important;
+}
+
+/* underline via box-shadow */
+.navbar-light .navbar-nav .nav-link{
+  display: inline-block;
+  margin-left: 22px;
+  padding: 22px 0;
+  font-size: 17px;
+  font-weight: 800;
+  color: var(--text-strong) !important;
+  transition: color .2s ease, box-shadow .2s ease;
+  box-shadow: none !important;
+}
+
+/* active = red color only (no underline) */
+.navbar-light .navbar-nav .nav-link.active{
+  color: var(--accent) !important;
+  box-shadow: none !important;
+}
+
+/* hover underline */
+.navbar-light .navbar-nav .nav-link:hover,
+.navbar-light .navbar-nav .nav-link:focus-visible{
+  color: var(--accent) !important;
+  box-shadow: inset 0 -3px 0 var(--accent) !important;
+}
+
+@media (max-width: 991.98px){
+  .navbar-light .navbar-nav .nav-link{
+    margin-left: 0;
+    padding: 10px 0;
+  }
+}
+
+/* =============================
+   Hero
+============================= */
+.hero-header{
+  position: relative;
+  background: url(../img/hero.jpg) top right no-repeat;
+  background-size: cover;
+  overflow: hidden;
+}
+.hero-header::before{
+  content:"";
+  position:absolute; inset:0;
+  background: linear-gradient(
+    90deg,
+    rgba(29,78,216,.88) 0%,
+    rgba(29,78,216,.62) 55%,
+    rgba(29,78,216,.25) 100%
+  );
+}
+.hero-header > .container{ position: relative; z-index: 1; }
+
+/* Hero kicker label readability */
+.hero-header h5{
+  color: rgba(255,255,255,.92) !important;
+}
+
+/* =============================
+   Cards / Services
+============================= */
+.service-item{
+  position: relative;
+  height: 350px;
+  padding: 0 30px;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--surface);
+  transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease;
+}
+.service-item:hover{
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-md);
+  border-color: rgba(var(--accent-rgb), .28);
+}
+.service-item h4,
+.service-item h5{ color: var(--text-strong); }
+.service-item p{ color: var(--text); }
+
+.service-item .service-icon{
+  width: 150px;
+  height: 100px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background: var(--primary);
+  border-radius: 50%;
+  transform: rotate(-14deg);
+  box-shadow: 0 10px 22px rgba(var(--primary-rgb), .25);
+}
+.service-item .service-icon i{ transform: rotate(15deg); }
+
+.service-item a.btn{
+  position:absolute;
+  width: 60px;
+  bottom: -48px;
+  left: 50%;
+  margin-left: -30px;
+  opacity: 0;
+  transition: opacity .2s ease, bottom .2s ease;
+}
+.service-item:hover a.btn{
+  bottom: -24px;
+  opacity: 1;
+}
+
+/* =============================
+   Owl Carousel (if used)
+============================= */
+.team-carousel .owl-nav{
+  position:absolute;
+  padding: 0 45px;
+  width: 100%;
+  height: 45px;
+  top: calc(50% - 22.5px);
+  left: 0;
+  display:flex;
+  justify-content: space-between;
+}
+.team-carousel .owl-nav .owl-prev,
+.team-carousel .owl-nav .owl-next{
+  width:45px; height:45px;
+  display:flex; align-items:center; justify-content:center;
+  color:#fff;
+  background: var(--primary);
+  border-radius: 999px;
+  font-size: 20px;
+  box-shadow: var(--shadow-sm);
+  transition: background .2s ease;
+}
+.team-carousel .owl-nav .owl-prev:hover,
+.team-carousel .owl-nav .owl-next:hover{
+  background: var(--accent);
+}
+
+/* =============================
+   Footer (Deep Blue bg, white text)
+============================= */
+.bg-dark{
+  background: linear-gradient(180deg, var(--deep-bg) 0%, var(--deep-bg-2) 100%) !important;
+}
+.bg-dark,
+.bg-dark p,
+.bg-dark li,
+.bg-dark small{
+  color: rgba(255,255,255,.90) !important;
+}
+.bg-dark .text-primary{
+  color: rgba(255,255,255,.95) !important;
+}
+.border-secondary{
+  border-color: rgba(255,255,255,.16) !important;
+}
+.text-light a:hover{
+  color: var(--accent) !important;
+}
+/* Partners carousel: make all cards same height */
+.team-carousel .team-item{
+  height: 380px; /* 원하는 높이로 조절 (예: 360~420) */
+}
+
+.team-carousel .team-item > .row{
+  height: 100%;
+}
+
+/* make both columns follow height */
+.team-carousel .team-item .col-sm-5,
+.team-carousel .team-item .col-sm-7{
+  height: 100%;
+}
+
+/* image fills its column */
+.team-carousel .team-item img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* keep right side layout stable */
+.team-carousel .team-item .col-sm-7{
+  display: flex;
+  flex-direction: column;
+}
+
+.team-carousel .team-item .col-sm-7 > .p-4{
+  flex: 1 1 auto;      /* 본문이 늘어나면 늘어나고 */
+}
+
+.team-carousel .team-item .col-sm-7 > .border-top{
+  flex: 0 0 auto;      /* 아래 버튼영역은 아래 고정 */
+}
+
+/* 모바일에서는 고정높이 풀어주는 게 자연스러움 */
+@media (max-width: 575.98px){
+  .team-carousel .team-item{ height: auto; }
+  .team-carousel .team-item > .row{ height: auto; }
+  .team-carousel .team-item img{ height: auto; }
+}
+
+/* SNS 비활성화 (코드 유지, 화면/공간에서 제거) */
+.sns-hide{
+  display: none !important;
+}
