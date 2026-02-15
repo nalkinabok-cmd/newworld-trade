@@ -443,7 +443,9 @@ a.btn-light:hover{
   display: none !important;
 }
 
-/* Custom rule for 'Go to Contact' button in footer to match Search button's normal state visual */
-.container-fluid.bg-dark a.btn.btn-outline-light {
-    background-color: var(--primary) !important;
+/* Footer 'Go to Contact' 버튼 호버 커스텀 */
+.container-fluid.bg-dark a.btn.btn-outline-light:hover {
+  background-color: var(--accent) !important; /* 빨간색 배경 */
+  border-color: var(--accent) !important;     /* 빨간색 테두리 */
+  color: #ffffff !important;                  /* 흰색 글자 */
 }
