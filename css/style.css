@@ -442,3 +442,8 @@ a.btn-light:hover{
 .sns-hide{
   display: none !important;
 }
+
+/* Custom rule for 'Go to Contact' button in footer to match Search button's normal state visual */
+.container-fluid.bg-dark a.btn.btn-outline-light {
+    background-color: var(--primary) !important;
+}
